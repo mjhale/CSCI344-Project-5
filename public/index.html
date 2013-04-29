@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>To-Do List</title>
+
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/app/reset.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/lib/foundation/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/app/app.css" />
+  </head>
+  <body>
+    <div id="container" class="row">
+      <div class="twelve columns">
+        <div class="tabs">
+          <ul class="tab-navigation">
+            <li class="tab active" id="all">All</li>
+            <li class="tab" id="categorized">Categorized</li>
+            <li class="tab" id="edit">Edit</li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab active" id="all"></div>
+            <div class="tab" id="categorized"></div>
+            <div class="tab" id="edit">
+              <form>
+                <div class="row">
+                  <div class="large-12 columns">
+                    <label>Todo</label>
+                    <textarea placeholder="Enter text here..."></textarea>
+                    <label>Categories</label>
+                    <input type="text" placeholder="Home, Garden, School" />
+
+                    <div class="small button success submit-entry">
+                      Add Item 
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="javascripts/app/app.js"></script>
+  </body>
+</html>

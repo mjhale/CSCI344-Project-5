@@ -1,0 +1,72 @@
+body {
+  background-color: #3E454C;
+}
+
+div.tabs {
+  margin: 0 auto;
+}
+
+ul.tab-navigation {
+  list-style-type: none;
+}
+
+ul.tab-navigation li.tab {
+  border: 0;
+  color: #2185C5;
+  cursor: pointer;
+  float: left;
+  font-size: .9em;
+  font-weight: bold;
+  margin: 0 5px 0 0;
+  padding: 7px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+ul.tab-navigation li.tab.active {
+  background-color: #FFF6E5;
+  color: #3E454C !important;
+}
+
+.tab-content .tab {
+  display: none;
+}
+
+.tab-content .active {
+  background-color: #FFF6E5;
+  border: 1px solid #FFF6E5;
+  clear: left;
+  display: block;
+  padding: 10px;
+}
+
+.tab-content .tab .set {
+  background-color: #818B85;
+  margin: 0 0 5px 0;
+  padding: 8px;
+}
+
+.tab-content .tab .item {
+  padding: 5px;
+}
+
+.tab-content .tab span {
+  margin: 0 5px 0 5px;
+}
+
+div#categorized .delete-btn {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 0 3px 0 7px;
+}
+
+div#categorized .delete-btn:hover {
+  color: #C10A0A;
+}
+
+div#all .delete-btn {
+  cursor: pointer;
+  float: right;
+  margin: 0 3px 0 0;
+}
