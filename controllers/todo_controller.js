@@ -11,4 +11,19 @@ TodoController.list = function (req, res) {
   });
 }
 
+TodoController.create = function (req, res) {
+  var t = new Todo({
+    "todo": req.body.todo,
+    "categories": req.body.categories
+  });
+
+  t.save(function (err, result) {
+    if (err !== null) {
+        //send the error
+    } else {
+        res.json(result);
+    }
+  });
+};
+
 module.exports = TodoController;

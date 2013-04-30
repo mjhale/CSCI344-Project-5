@@ -24,6 +24,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/todos.json", tc.list);
+app.post("/todo/new", tc.create);
 
 http.createServer(app).listen(3000, function () {
     console.log("Express server listening on port 3000");
