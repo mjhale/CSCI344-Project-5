@@ -22,7 +22,7 @@
       $('div#all').empty();
       for (i = 0; i < todos.length; i++) {
         $('div#all').append('<div class="set set-' + i + '" />');
-        $('div#all .set-' + i).wrapInner('<div class="item">' + todos[i].description + '</div>');
+        $('div#all .set-' + i).wrapInner('<div class="item">' + todos[i].todo + '</div>');
         for (j = 0; j < todos[i].categories.length; j++) {
           $('div#all .set-' + i).append('<span class="round label">' + todos[i].categories[j]  + '</span>');
         }
@@ -48,7 +48,7 @@
           $('div#categorized').append('<div class="set set-' + k + '" />');
           $('div#categorized .set-' + k).wrapInner('<div class="round label">' + k + '</div>');
           for (i = 0; i < categories[k].length; i++) {
-            $('div#categorized .set-' + k).append('<div class="set-' + categories[k][i] + '"><div class="description"><span class="delete-btn" id="' + categories[k][i] + '">&times;</span>' + todos[categories[k][i]].description + '</div></div>');
+            $('div#categorized .set-' + k).append('<div class="set-' + categories[k][i] + '"><div class="description"><span class="delete-btn" id="' + categories[k][i] + '">&times;</span>' + todos[categories[k][i]].todo + '</div></div>');
           }
         }
       }
@@ -68,13 +68,25 @@
 
   setUpAddHandler = function (element) {
     element.click(function () {
-      if ($('textarea').val() && $('input[type=text]').val()) {
+      var todo = $('textarea').val(),
+        categories = $('input[type=text]').val().split(/[\s,]+/),
+        post_object = {};
+
+      if (todo && categories) {
+        post_object.todo = todo;
+        post_object.categories = categories;
+
+        // Update client-side
         todos.push({
-          description: $('textarea').val(),
+          todo: $('textarea').val(),
           categories: $('input[type=text]').val().split(/[\s,]+/)
         });
-        $('textarea').val('');
-        $('input[type=text]').val('');
+
+        // Update database add
+        $.post("/todo/new", post_object, function (response) {
+          $('textarea').val('');
+          $('input[type=text]').val('');
+        });
       }
     });
   };
@@ -83,7 +95,15 @@
     // Attach to future element
     $('.tab').on('click', element, function () {
       var target = $(this).attr('id'),
-        currentTab = $('.tab-navigation .active').attr('id');
+        currentTab = $('.tab-navigation .active').attr('id'),
+        todo = $(this).siblings('div .item').text(),
+        post_object = {};
+
+      post_object.todo = todo;
+
+      // Send database destroy
+      $.post("/todo/destroy", post_object, function (response) {
+      });
 
       // It's likely safe to assume only one element is being removed at once
       todos.splice(target, 1);
@@ -95,7 +115,7 @@
   };
 
   main = function () {
-    loadJSON('all.json');
+    loadJSON('todos.json');
     setUpClickHandler($('li.tab'));
     setUpAddHandler($('.submit-entry'));
     setUpDeleteHandler('span.delete-btn');

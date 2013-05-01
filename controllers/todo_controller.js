@@ -26,4 +26,21 @@ TodoController.create = function (req, res) {
   });
 };
 
+TodoController.destroy = function (req, res) {
+  Todo.findOne({ "todo": req.body.todo }, function (err, todo) {
+    if (err !== null) {
+        console.log(err);
+    } else if (todo === null) {
+        console.log("Todo not found");
+    } else {
+      todo.remove(function (err) {
+        if (err !== null) {
+          console.log(err);
+        }
+      });
+    }
+  });
+};
+
+
 module.exports = TodoController;
