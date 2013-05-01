@@ -48,7 +48,7 @@
           $('div#categorized').append('<div class="set set-' + k + '" />');
           $('div#categorized .set-' + k).wrapInner('<div class="round label">' + k + '</div>');
           for (i = 0; i < categories[k].length; i++) {
-            $('div#categorized .set-' + k).append('<div class="set-' + categories[k][i] + '"><div class="description"><span class="delete-btn" id="' + categories[k][i] + '">&times;</span>' + todos[categories[k][i]].todo + '</div></div>');
+            $('div#categorized .set-' + k).append('<div class="set-' + categories[k][i] + '"><div class="description"><span class="delete-btn" id="' + categories[k][i] + '">&times;</span><div class="item">' + todos[categories[k][i]].todo + '</div></div></div>');
           }
         }
       }
